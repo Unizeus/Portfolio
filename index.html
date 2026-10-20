@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mukulnandan Gowda — Portfolio</title>
+<title>Mukulnandan Gowda — Operations, Data &amp; ML</title>
+<meta name="description" content="Portfolio of Mukulnandan Gowda — campaign operations, data analysis, and machine learning projects.">
+<meta name="theme-color" content="#080b12">
 <style>
 :root{--bg:#ffffff;--alt:#f6f7f9;--text:#111827;--muted:#5b6472;--line:#e3e6eb;--accent:#1e3a8a;--chip:#eef2fb;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -68,6 +70,63 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 0 40px;b
 @media (max-width:720px){.job,.skg,.edu{grid-template-columns:1fr}.two{grid-template-columns:1fr;gap:28px}.hero{padding:56px 0 44px}section{padding-top:52px}}
 @media print{nav,.flt,.tg,#toast,.contact .btn{display:none}.rv{opacity:1;transform:none}.more{display:block}.hide{display:block}}
 </style>
+
+<style id="portfolio-refresh">
+:root{--bg:#080b12;--alt:#101521;--text:#f3f5fb;--muted:#a3aec2;--line:#252d3d;--accent:#a7f36b;--chip:#17251a;color-scheme:dark}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f8f4;--alt:#fff;--text:#121a18;--muted:#66716c;--line:#dce3dc;--accent:#326b3d;--chip:#eaf2e8;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f7f8f4;--alt:#fff;--text:#121a18;--muted:#66716c;--line:#dce3dc;--accent:#326b3d;--chip:#eaf2e8;color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7;letter-spacing:-.012em}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 82% 8%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 34%)}
+nav{backdrop-filter:blur(18px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom-color:color-mix(in srgb,var(--line) 72%,transparent)}
+nav div{max-width:1120px;height:68px;gap:25px}
+nav b{font-size:14px;letter-spacing:-.025em}
+nav a{height:68px;font-size:13px}
+main{max-width:1120px;padding:0 32px}
+.hero{padding:94px 0 56px;gap:38px}
+.hrow{align-items:center;gap:52px}
+.pic{width:168px;height:168px;border:3px solid var(--bg);outline:1px solid var(--line);box-shadow:0 0 0 9px color-mix(in srgb,var(--accent) 9%,transparent),0 18px 60px rgba(0,0,0,.18)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.16em}
+.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1{font-family:ui-sans-serif,system-ui,sans-serif;font-size:clamp(42px,6.6vw,76px);letter-spacing:-.065em;line-height:.99;font-weight:720;margin:17px 0 15px;max-width:720px}
+.sub{font-size:clamp(17px,2vw,21px);letter-spacing:-.035em;color:var(--accent);font-weight:560;margin-bottom:18px}
+.lead{max-width:690px;color:var(--muted);font-size:16px;line-height:1.85}
+.btn{border-radius:999px;padding:11px 19px;margin:0 8px 8px 0;font-weight:560;font-size:14px;transition:transform .2s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn.p{color:#10150d;background:var(--accent);border-color:var(--accent)}
+.facts{gap:0;padding:27px 0;border-color:var(--line)}
+.facts div{flex:1;min-width:140px;padding:0 22px;border-right:1px solid var(--line)}
+.facts div:first-child{padding-left:0}.facts div:last-child{border-right:0}
+.facts b{font-family:ui-sans-serif,system-ui,sans-serif;font-size:clamp(27px,3vw,36px);letter-spacing:-.05em;color:var(--accent)}
+.facts span{display:block;max-width:150px;line-height:1.5}
+section{padding:86px 0 8px;scroll-margin-top:85px}
+h2{font-family:ui-sans-serif,system-ui,sans-serif;font-size:clamp(27px,3vw,35px);letter-spacing:-.05em;font-weight:680;margin-bottom:8px}
+.kick{font-size:14px;margin-bottom:30px;color:var(--muted)}
+.job{grid-template-columns:190px 1fr;padding:27px 0;border-top-color:var(--line)}
+.job h3,.proj h3{font-size:17px;letter-spacing:-.025em}
+.org{font-size:14px;font-weight:550}
+.badge{border-radius:999px;font-size:10px;padding:3px 9px;letter-spacing:.08em}
+.job ul,.proj ul{font-size:14px;line-height:1.8}
+.tg{font-weight:600}
+.flt{gap:9px}
+.flt button{border-radius:999px;padding:8px 15px;font-size:13px;transition:all .2s}
+.proj{border-radius:16px;padding:25px 27px;margin-bottom:14px;background:var(--alt);border-color:var(--line);transition:transform .22s,border-color .22s,box-shadow .22s}
+.proj:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 18px 45px rgba(0,0,0,.08)}
+.proj .org{margin:7px 0 12px}
+.skg{grid-template-columns:190px 1fr;padding:22px 0}
+.skg h3,.two h3{font-size:14px;letter-spacing:-.01em}
+.chips span{border:1px solid color-mix(in srgb,var(--accent) 15%,var(--line));border-radius:999px;padding:5px 12px;font-size:12px;margin:0 5px 7px 0}
+.edu{padding:24px 0}
+.contact{margin-top:100px;padding:66px 24px;border:1px solid var(--line);border-radius:22px;background:var(--alt);text-align:center}
+.contact h2{font-size:clamp(30px,4vw,42px)}
+.contact p{max-width:500px;margin:12px auto 26px}
+footer{margin-top:45px;font-size:12px}
+.ic{border-radius:50%;width:34px;height:34px}
+.rv{transform:translateY(16px);transition:opacity .65s ease,transform .65s ease}
+@media(max-width:720px){main{padding:0 20px}.hero{padding:55px 0 36px}.hrow{align-items:flex-start;gap:28px}.pic{width:116px;height:116px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:22px}.facts div{padding:0 12px;border-right:0}.facts div:first-child{padding-left:12px}.facts b{font-size:29px}section{padding-top:62px}.job,.skg,.edu{grid-template-columns:1fr;gap:6px}.proj{padding:21px}.contact{margin-top:68px;padding:42px 18px}nav div{padding:0 18px;gap:18px}nav b{font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{transition:none}.proj,.btn{transition:none}}
+</style>
+
 </head>
 <body>
 <nav><div><b>Mukulnandan Gowda</b><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="ic" id="th" aria-label="Toggle light or dark theme">◐</button></div></nav>
