@@ -1076,7 +1076,7 @@ footer {
           <span>Bengaluru, India · Active</span>
         </div>
         <h1>Mukulnandan Gowda</h1>
-        <p class="sub">Associate, Campaign Operations at CRED</p>
+        <p class="sub">Campaign Operations Associate at CRED</p>
         <p class="lead">Electronics and Communication Engineering student at PES University with a minor in Computer Science. I work at the intersection of operations, data and machine learning, with hands-on experience in SQL data pipelines, graph-based ML and defense communication systems.</p>
         <div class="cta-group">
           <a class="btn p" href="#contact">
@@ -1090,24 +1090,6 @@ footer {
       </div>
     </div>
 
-    <div class="facts" id="facts">
-      <div class="fact-card spot-card">
-        <b data-n="92" data-s="%">92%</b>
-        <span>Trojan detection accuracy (GCN)</span>
-      </div>
-      <div class="fact-card spot-card">
-        <b data-n="85" data-s="%">85%</b>
-        <span>Fewer data inconsistencies</span>
-      </div>
-      <div class="fact-card spot-card">
-        <b data-n="40" data-s="%">40%</b>
-        <span>Less manual data-prep time</span>
-      </div>
-      <div class="fact-card spot-card">
-        <b data-n="15" data-s="+">15+</b>
-        <span>College events organized</span>
-      </div>
-    </div>
   </header>
 
   <!-- EXPERIENCE -->
@@ -1122,9 +1104,9 @@ footer {
 
     <div class="timeline">
       <div class="job spot-card">
-        <div class="when">10 Feb 2026 – Present</div>
+        <div class="when">Feb 2026 – Present</div>
         <div>
-          <h3>Associate, Campaign Operations <span class="badge">Current</span></h3>
+          <h3>Campaign Operations Associate <span class="badge">Current</span></h3>
           <div class="org">CRED</div>
         </div>
       </div>
@@ -1382,25 +1364,6 @@ footer {
   }, { threshold: 0.1 });
   $$('.rv').forEach(function (el) { io.observe(el); });
 
-  var counted = false;
-  var fo = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting || counted) return;
-    counted = true;
-    $$('#facts [data-n]').forEach(function (el) {
-      var target = +el.dataset.n;
-      var suffix = el.dataset.s || '';
-      var start = performance.now();
-      var dur = 1100;
-      function tick(now) {
-        var p = Math.min(1, (now - start) / dur);
-        var eased = 1 - Math.pow(1 - p, 3); // cubic ease-out
-        el.textContent = Math.round(target * eased) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    });
-  }, { threshold: 0.25 });
-  fo.observe($('#facts'));
 
   /* 5. Scroll Progress Laser & Active Nav Spy */
   window.addEventListener('scroll', function () {
