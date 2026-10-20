@@ -252,6 +252,30 @@ nav {
   margin-left: 12px;
 }
 
+.cmd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--muted);
+  transition: all 0.2s ease;
+}
+.cmd-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.cmd-btn kbd {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  background: var(--bg-elev);
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
 
 .theme-btn {
   background: var(--surface);
@@ -966,6 +990,75 @@ footer {
 }
 
 /* Command Palette Modal */
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 6, 12, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 150;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 16px 16px;
+}
+.cmd-overlay.open {
+  display: flex;
+  animation: fadeSlide 0.18s ease;
+}
+.cmd-modal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface-solid);
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.cmd-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 10px;
+}
+.cmd-header input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 14.5px;
+}
+.cmd-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 8px;
+}
+.cmd-item {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.cmd-item:hover, .cmd-item:focus {
+  background: var(--chip-bg);
+  color: var(--accent);
+  outline: none;
+}
+.cmd-item span.hint {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
 
 /* ==========================================================================
    10. RESPONSIVE & ACCESSIBILITY
@@ -990,6 +1083,9 @@ footer {
   .job, .skg, .edu-card, .two {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+  .cmd-btn span {
+    display: none;
   }
 }
 
@@ -1022,6 +1118,7 @@ footer {
 }
 
 @media print {
+  nav, .flt, .tg, #toast, .contact-btns, #scroll-bar, .bg-canvas, .ambient-orb, .cmd-overlay { display: none !important; }
   .rv { opacity: 1 !important; transform: none !important; }
   .more, .hide { display: block !important; }
   body { background: #fff; color: #000; }
@@ -1048,6 +1145,9 @@ footer {
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-actions">
+      <button class="cmd-btn" id="open-cmd" aria-label="Open command palette" title="Quick Actions (Ctrl/Cmd + K)">
+        <span>Actions</span><kbd>⌘K</kbd>
+      </button>
       <button class="theme-btn" id="th" aria-label="Toggle light or dark theme" title="Toggle Light / Dark Theme">
         <!-- Sun Icon (shown in dark mode) -->
         <svg class="sun-icon" viewBox="0 0 24 24">
@@ -1122,7 +1222,7 @@ footer {
 
     <div class="timeline">
       <div class="job spot-card">
-        <div class="when">10 Feb 2026 – Present</div>
+        <div class="when">10 Feb 2026 – Present<br><span id="tenure"></span></div>
         <div>
           <h3>Associate, Campaign Operations <span class="badge">Current</span></h3>
           <div class="org">CRED</div>
@@ -1322,8 +1422,28 @@ footer {
 
 <footer>
   <span>© 2026 Mukulnandan Gowda · Bengaluru, India</span>
+  <span class="mono">Press <kbd style="padding:2px 6px;border:1px solid var(--line);border-radius:4px">⌘K</kbd> for quick commands</span>
 </footer>
 
+<!-- COMMAND PALETTE MODAL -->
+<div class="cmd-overlay" id="cmd-overlay" role="dialog" aria-modal="true" aria-label="Command Palette">
+  <div class="cmd-modal">
+    <div class="cmd-header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="cmd-input" placeholder="Type a command or section..." autocomplete="off">
+      <span class="mono" style="font-size:11px;color:var(--muted)">ESC</span>
+    </div>
+    <div class="cmd-list" id="cmd-list">
+      <button class="cmd-item" data-act="theme"><span>Toggle Light / Dark Theme</span><span class="hint">Theme</span></button>
+      <button class="cmd-item" data-act="copy"><span>Copy Email (gowdamukul10@gmail.com)</span><span class="hint">Action</span></button>
+      <button class="cmd-item" data-act="goto" data-target="#experience"><span>Jump to Experience</span><span class="hint">Section</span></button>
+      <button class="cmd-item" data-act="goto" data-target="#projects"><span>Jump to Selected Projects</span><span class="hint">Section</span></button>
+      <button class="cmd-item" data-act="goto" data-target="#skills"><span>Jump to Skills Matrix</span><span class="hint">Section</span></button>
+      <button class="cmd-item" data-act="goto" data-target="#education"><span>Jump to Education &amp; Credentials</span><span class="hint">Section</span></button>
+      <button class="cmd-item" data-act="linkedin"><span>Open LinkedIn Profile</span><span class="hint">External ↗</span></button>
+    </div>
+  </div>
+</div>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -1370,6 +1490,11 @@ footer {
   $('#th').addEventListener('click', toggleTheme);
 
   /* 3. Dynamic CRED Tenure Calculation */
+  (function () {
+    var start = new Date(2026, 1, 10), now = new Date();
+    var m = (now.getFullYear() - start.getFullYear()) * 12 + now.getMonth() - start.getMonth() - (now.getDate() < start.getDate() ? 1 : 0);
+    $('#tenure').textContent = m > 0 ? m + ' month' + (m > 1 ? 's' : '') : 'Active';
+  })();
 
   /* 4. Scroll Reveal & Eased Telemetry Counters */
   var io = new IntersectionObserver(function (entries) {
@@ -1474,6 +1599,56 @@ footer {
   }
   $('#cp').onclick = copyEmail;
 
+  /* 9. Command Palette (Ctrl/Cmd + K) */
+  var overlay = $('#cmd-overlay');
+  var cmdInput = $('#cmd-input');
+  var cmdItems = $$('.cmd-item');
+
+  function openCmd() {
+    overlay.classList.add('open');
+    cmdInput.value = '';
+    filterCmd('');
+    setTimeout(function () { cmdInput.focus(); }, 20);
+  }
+  function closeCmd() {
+    overlay.classList.remove('open');
+  }
+  function filterCmd(q) {
+    var term = q.toLowerCase();
+    cmdItems.forEach(function (item) {
+      item.style.display = item.textContent.toLowerCase().indexOf(term) > -1 ? 'flex' : 'none';
+    });
+  }
+
+  $('#open-cmd').addEventListener('click', openCmd);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeCmd();
+  });
+  cmdInput.addEventListener('input', function (e) { filterCmd(e.target.value); });
+
+  window.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      overlay.classList.contains('open') ? closeCmd() : openCmd();
+    } else if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeCmd();
+    }
+  });
+
+  cmdItems.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var act = btn.dataset.act;
+      closeCmd();
+      if (act === 'theme') toggleTheme();
+      else if (act === 'copy') copyEmail();
+      else if (act === 'goto') {
+        var t = $(btn.dataset.target);
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+      } else if (act === 'linkedin') {
+        window.open('https://www.linkedin.com/in/mukulgowda10', '_blank', 'noopener');
+      }
+    });
+  });
 })();
 </script>
 </body>
