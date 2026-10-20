@@ -1222,7 +1222,7 @@ footer {
 
     <div class="timeline">
       <div class="job spot-card">
-        <div class="when">10 Feb 2026 – Present<br><span id="tenure"></span></div>
+        <div class="when">10 Feb 2026 – Present</div>
         <div>
           <h3>Associate, Campaign Operations <span class="badge">Current</span></h3>
           <div class="org">CRED</div>
@@ -1490,11 +1490,6 @@ footer {
   $('#th').addEventListener('click', toggleTheme);
 
   /* 3. Dynamic CRED Tenure Calculation */
-  (function () {
-    var start = new Date(2026, 1, 10), now = new Date();
-    var m = (now.getFullYear() - start.getFullYear()) * 12 + now.getMonth() - start.getMonth() - (now.getDate() < start.getDate() ? 1 : 0);
-    $('#tenure').textContent = m > 0 ? m + ' month' + (m > 1 ? 's' : '') : 'Active';
-  })();
 
   /* 4. Scroll Reveal & Eased Telemetry Counters */
   var io = new IntersectionObserver(function (entries) {
