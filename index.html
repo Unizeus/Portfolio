@@ -1026,6 +1026,32 @@ footer {
   .more, .hide { display: block !important; }
   body { background: #fff; color: #000; }
 }
+
+/* ---- inspiration pass: ribbon, about, quick links, view toggle ---- */
+.ib-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.ib{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text-secondary);font:inherit;font-size:14px;cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
+.ib:hover{border-color:var(--chip-border);color:var(--accent);transform:translateY(-1px)}
+.ib svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ribbon{overflow:hidden;margin:8px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ribbon .track{display:flex;gap:36px;width:max-content;animation:rib 38s linear infinite}
+.ribbon:hover .track{animation-play-state:paused}
+.ribbon span{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);white-space:nowrap}
+.ribbon span::before{content:"/";color:var(--accent);margin-right:36px}
+@keyframes rib{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ribbon .track{animation:none}}
+.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;align-items:start}
+.about-line{font-size:clamp(22px,3vw,30px);line-height:1.25;font-weight:700;letter-spacing:-.02em;margin:0 0 14px}
+.about-p{color:var(--text-secondary);margin:0 0 18px;max-width:620px}
+.focus{display:flex;flex-wrap:wrap;gap:8px}
+.focus span{padding:4px 12px;border-radius:99px;font-size:13px;background:var(--chip-bg);border:1px solid var(--chip-border);color:var(--chip-text)}
+.snap{padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--surface);position:relative;overflow:hidden}
+.snap h3{margin:0 0 14px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.snap-row{padding:12px 0;border-top:1px solid var(--line)}
+.snap-row b{display:block;font-size:15px}
+.snap-row span{font-size:13px;color:var(--muted)}
+.snap-row em{font-style:normal;color:var(--accent);font-family:"JetBrains Mono",monospace}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr}}
+@media print{.ribbon,.ib-row{display:none}}
 </style>
 </head>
 <body>
@@ -1041,6 +1067,7 @@ footer {
       <b>Mukulnandan Gowda</b>
     </a>
     <div class="nav-links">
+      <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
@@ -1087,10 +1114,41 @@ footer {
             <span>View projects</span>
           </a>
         </div>
+        <div class="ib-row">
+          <a class="ib" href="https://www.linkedin.com/in/mukulgowda10" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+          <a class="ib" href="mailto:gowdamukul10@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</a>
+          <button class="ib" id="cp2" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>Copy email</button>
+          <button class="ib" id="pdf" type="button"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>Save as PDF</button>
+        </div>
       </div>
     </div>
 
   </header>
+
+  <div class="ribbon" aria-hidden="true"><div class="track"><span>Python</span><span>SQL</span><span>MySQL</span><span>Pandas</span><span>Window Functions</span><span>ETL Pipelines</span><span>EDA</span><span>Data Modeling</span><span>Dashboards</span><span>Figma</span><span>Excel</span><span>Git</span><span>Python</span><span>SQL</span><span>MySQL</span><span>Pandas</span><span>Window Functions</span><span>ETL Pipelines</span><span>EDA</span><span>Data Modeling</span><span>Dashboards</span><span>Figma</span><span>Excel</span><span>Git</span></div></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="rv">
+    <div class="sec-head">
+      <div>
+        <span class="sec-tag">// 00. Profile</span>
+        <h2>About</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-line">Where campaign operations meets data.</p>
+        <p class="about-p">I run campaign execution at CRED, working with Product, Design and Tech teams to get launches out cleanly and then reading the numbers to see what worked. Alongside that, I study Electronics and Communication Engineering at PES University and build data and machine learning projects, from SQL cleaning pipelines to graph-based hardware security research.</p>
+        <div class="focus"><span>Campaign Execution</span><span>Data &amp; SQL</span><span>Applied ML</span></div>
+      </div>
+      <div class="snap spot-card">
+        <h3>Snapshot</h3>
+        <div class="snap-row"><b>Campaign Operations Associate</b><span>CRED · Feb 2026 – Present</span></div>
+        <div class="snap-row"><b>B.Tech, Electronics &amp; Communication</b><span>PES University · Minor in Computer Science</span></div>
+        <div class="snap-row"><b>Based in Bengaluru</b><span>Local time <em id="clock">--:--</em></span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- EXPERIENCE -->
   <section id="experience" class="rv">
@@ -1108,6 +1166,11 @@ footer {
         <div>
           <h3>Campaign Operations Associate <span class="badge">Current</span></h3>
           <div class="org">CRED</div>
+          <ul>
+            <li><strong>Campaign Execution:</strong> Managed end-to-end execution of campaigns across CRED’s central experiences, coordinating timelines, assets, and launch readiness to ensure seamless delivery.</li>
+            <li><strong>Cross-functional Collaboration:</strong> Partnered with Product, Design, and Tech teams to validate campaign requirements, coordinate implementation, and conduct QA checks before launch.</li>
+            <li><strong>Performance Monitoring:</strong> Monitored campaign performance metrics, identified execution gaps, and collaborated with stakeholders to troubleshoot issues and improve campaign effectiveness.</li>
+          </ul>
         </div>
       </div>
 
@@ -1436,6 +1499,17 @@ footer {
     } catch (e) { toast(m); }
   }
   $('#cp').onclick = copyEmail;
+
+  /* inspiration pass: clock, quick links, view toggle */
+  (function () {
+    var el = document.getElementById('clock');
+    function tick() {
+      try { el.textContent = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true }).toUpperCase() + ' IST'; } catch (e) { el.textContent = ''; }
+    }
+    if (el) { tick(); setInterval(tick, 15000); }
+    var c2 = document.getElementById('cp2'); if (c2) c2.onclick = copyEmail;
+    var pd = document.getElementById('pdf'); if (pd) pd.onclick = function () { window.print(); };
+  })();
 
 })();
 </script>
